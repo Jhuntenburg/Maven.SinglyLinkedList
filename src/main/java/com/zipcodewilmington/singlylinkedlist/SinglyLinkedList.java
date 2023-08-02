@@ -43,7 +43,7 @@ public class SinglyLinkedList<T> implements LinkedListIface {
                 //print the data...
                 sb.append("[" + temp.getData() + "] -> ");
                 temp = temp.getNext();
-            }while ((temp != null));// && temp.hasNext());
+            } while ((temp != null));// && temp.hasNext());
         }
 
         //add null
@@ -63,17 +63,35 @@ public class SinglyLinkedList<T> implements LinkedListIface {
 
     @Override
     public boolean contains(Object data) {
-        return false;
+        return (this.find(data) != -1);
     }
 
     @Override
     public int find(Object data) {
-        return 0;
+        if (this.isEmpty()) return -1;
+        int found = -1;
+
+        Node<T> temp = head;
+        do {
+            found++;
+            if (temp.getData().equals(data)) return found;
+            temp = temp.getNext();
+        } while (temp != null);
+
+        return -1;
     }
 
     @Override
     public int size() {
-        return 0;
+        if (this.isEmpty()) return 0;
+        int n = 0;
+        Node<T> temp = head;
+        do {
+            n++;
+            temp = temp.getNext();
+        } while (temp != null);
+
+        return n;
     }
 
     @Override
